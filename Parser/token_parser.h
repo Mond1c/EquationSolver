@@ -10,7 +10,7 @@ namespace Token {
         public:
             static std::unique_ptr<IConst> parse(const std::string& str);
         private:
-            static std::unique_ptr<Const::Number> parseNumber(const std::string& str);
+            static std::unique_ptr<Const::Number> parseNumber(std::string str);
         };
     }
 

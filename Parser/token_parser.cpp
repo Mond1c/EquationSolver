@@ -6,7 +6,9 @@ std::unique_ptr<IConst> Const::Parser::parse(const std::string& str) {
     return std::move(parseNumber(str));
 }
 
-std::unique_ptr<Const::Number> Const::Parser::parseNumber(const std::string& str) {
+std::unique_ptr<Const::Number> Const::Parser::parseNumber(std::string str) {
+    if (str.empty()) str = "1";
+    else if (str == "-") str = "-1";
     return std::move(std::make_unique<Const::Number>(std::stod(str)));
 }
 

@@ -13,6 +13,7 @@ namespace Token {
     public:
         virtual double calculate() const = 0;
         void setToken(std::unique_ptr<IConst> token);
+        virtual void changeSign() = 0;
     protected:
         std::unique_ptr<IConst> token_;
     };
@@ -24,6 +25,7 @@ namespace Token {
     public:
         virtual double getFactor() const = 0;
         void setToken(std::unique_ptr<IConst> token);
+        void changeSign();
     protected:
         std::unique_ptr<IConst> token_;
     };
@@ -35,6 +37,7 @@ namespace Token {
             ~Number() override = default;
         public:
             double calculate() const override;
+            void changeSign() override;
         private:
             double number_;
         };
