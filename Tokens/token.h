@@ -8,7 +8,8 @@ namespace Token {
     namespace Var {
         enum Type {
             LINEAR,
-            QUADRATIC
+            QUADRATIC,
+            IRRATIONAL
         };
     }
 
@@ -48,6 +49,33 @@ namespace Token {
         private:
             double number_;
         };
+
+        class Power : public IConst {
+        public:
+            Power(std::unique_ptr<IConst> token, double power) : power_(power) {
+                this->setToken(std::move(token));
+            }
+            ~Power() override = default;
+        public:
+            double calculate() const override;
+            void changeSign() override;
+        private:
+            int factor_ = 1;
+            double power_;
+        };
+
+        class Irrational : public IConst {
+        public:
+            Irrational(std::unique_ptr<IConst> token) {
+                this->setToken(std::move(token));
+            }
+            ~Irrational() override = default;
+        public:
+            double calculate() const override;
+            void changeSign() override;
+        private:
+            int factor_ = 1;
+        };
     }
 
     namespace Var {
@@ -64,6 +92,14 @@ namespace Token {
         public:
             Quadratic() = default;
             ~Quadratic() override = default;
+        public:
+            Type getType() const override;
+        };
+
+        class Irrational : public IVar {
+        public:
+            Irrational() = default;
+            ~Irrational() override = default;
         public:
             Type getType() const override;
         };

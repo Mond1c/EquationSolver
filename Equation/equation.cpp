@@ -48,3 +48,16 @@ std::vector<double> Equation::Quadratic::findX() const {
     d = std::sqrt(d);
     return {(-b + d) / (2 * a), (-b - d) / (2 * a) };
 }
+
+std::vector<double> Equation::Irrational::findX() const {
+    double consts_sum = 0;
+    double vars_sum = 0;
+    for (const auto& token : consts_) {
+        consts_sum += token->calculate();
+    }
+    for (const auto& token : vars_) {
+        vars_sum += token->getFactor();
+    }
+
+    return {(consts_sum * consts_sum) / vars_sum};
+}

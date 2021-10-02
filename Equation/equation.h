@@ -23,7 +23,7 @@ namespace EquationSolver {
         class Linear : public IEquation {
         public:
             Linear() = default;
-            virtual ~Linear() = default;
+            ~Linear() override = default;
         public:
             std::vector<double> findX() const override;
         };
@@ -31,7 +31,15 @@ namespace EquationSolver {
         class Quadratic : public IEquation {
         public:
             Quadratic() = default;
-            virtual ~Quadratic() = default;
+            ~Quadratic() override = default;
+        public:
+            std::vector<double> findX() const override;
+        };
+
+        class Irrational : public IEquation {
+        public:
+            Irrational() = default;
+            ~Irrational() override = default;
         public:
             std::vector<double> findX() const override;
         };

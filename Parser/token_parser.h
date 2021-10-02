@@ -11,6 +11,8 @@ namespace Token {
             static std::unique_ptr<IConst> parse(const std::string& str);
         private:
             static std::unique_ptr<Const::Number> parseNumber(std::string str);
+            static std::unique_ptr<Const::Power> parsePower(const std::string& str);
+            static std::unique_ptr<Const::Irrational> parseIrrational(const std::string& str);
         };
     }
 
@@ -24,6 +26,9 @@ namespace Token {
             
             template<typename Iterator>
             static std::unique_ptr<Var::Quadratic> parseQuadratic(const std::string& str, Iterator iterator);
+            
+            template<typename Iterator>
+            static std::unique_ptr<Var::Irrational> parseIrrational(const std::string& str, Iterator iterator);
         };
     }
 }

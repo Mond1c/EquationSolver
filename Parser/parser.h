@@ -12,6 +12,7 @@ namespace EquationSolver {
     private:
         static std::unique_ptr<Equation::Linear> parseLinear(const std::vector<std::string>& expression);
         static std::unique_ptr<Equation::Quadratic> parseQuadratic(const std::vector<std::string>& expression);
+        static std::unique_ptr<Equation::Irrational> parseIrrational(const std::vector<std::string>& expression);
         static std::vector<std::string> split(const std::string& str, char separator);
     };
 }
