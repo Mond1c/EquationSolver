@@ -6,6 +6,10 @@ void IConst::setToken(std::unique_ptr<IConst> token) {
     token_ = std::move(token);
 }
 
+double IVar::getFactor() const {
+    return token_->calculate();
+}
+
 void IVar::setToken(std::unique_ptr<IConst> token) {
     token_ = std::move(token);
 }
@@ -22,6 +26,10 @@ void Const::Number::changeSign() {
     number_ *= -1;
 }
 
-double Var::Linear::getFactor() const {
-    return token_->calculate();
+Var::Type Var::Linear::getType() const {
+    return Var::Type::LINEAR;
+}
+
+Var::Type Var::Quadratic::getType() const {
+    return Var::Type::QUADRATIC;
 }

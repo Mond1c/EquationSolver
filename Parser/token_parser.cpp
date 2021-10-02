@@ -13,6 +13,7 @@ std::unique_ptr<Const::Number> Const::Parser::parseNumber(std::string str) {
 }
 
 std::unique_ptr<IVar> Var::Parser::parse(const std::string& str) {
+    if (str.find('^') != std::string::npos) return std::move(parseQuadratic(str, str.find('x')));
     return std::move(parseLinear(str, str.find('x')));
 }
 
@@ -22,3 +23,10 @@ std::unique_ptr<Var::Linear> Var::Parser::parseLinear(const std::string& str, It
     ptr->setToken(Const::Parser::parse(str.substr(0, iterator)));
     return std::move(ptr);
 };
+
+template<typename Iterator>
+std::unique_ptr<Var::Quadratic> Var::Parser::parseQuadratic(const std::string& str, Iterator iterator) {
+    auto ptr = std::make_unique<Var::Quadratic>();
+    ptr->setToken(Const::Parser::parse(str.substr(0, iterator)));
+    return std::move(ptr);
+}

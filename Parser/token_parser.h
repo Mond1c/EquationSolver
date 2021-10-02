@@ -21,6 +21,9 @@ namespace Token {
         private:
             template<typename Iterator>
             static std::unique_ptr<Var::Linear> parseLinear(const std::string& str, Iterator iterator);
+            
+            template<typename Iterator>
+            static std::unique_ptr<Var::Quadratic> parseQuadratic(const std::string& str, Iterator iterator);
         };
     }
 }

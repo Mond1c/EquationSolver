@@ -5,6 +5,12 @@
 
 namespace EquationSolver {
 namespace Token {
+    namespace Var {
+        enum Type {
+            LINEAR,
+            QUADRATIC
+        };
+    }
 
     abstract class IConst {
     public:
@@ -23,7 +29,8 @@ namespace Token {
         IVar() = default;
         virtual ~IVar() = default;
     public:
-        virtual double getFactor() const = 0;
+        double getFactor() const;
+        virtual Var::Type getType() const = 0;
         void setToken(std::unique_ptr<IConst> token);
         void changeSign();
     protected:
@@ -44,12 +51,21 @@ namespace Token {
     }
 
     namespace Var {
+
         class Linear : public IVar {
         public:
             Linear() = default;
             ~Linear() override = default;
         public:
-            double getFactor() const override;
+            Type getType() const override;
+        };
+
+        class Quadratic : public IVar {
+        public:
+            Quadratic() = default;
+            ~Quadratic() override = default;
+        public:
+            Type getType() const override;
         };
     }
 }
