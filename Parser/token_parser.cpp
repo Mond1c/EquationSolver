@@ -1,5 +1,4 @@
 #include "token_parser.h"
-#include <iostream>
 using namespace EquationSolver;
 using namespace Token;
 
@@ -21,8 +20,8 @@ std::unique_ptr<Const::Power> Const::Parser::parsePower(const std::string& str) 
 }
 
 std::unique_ptr<Const::Irrational> Const::Parser::parseIrrational(const std::string& str) {
-    auto it = str.find(')');
-    return std::move(std::make_unique<Const::Irrational>(parse(str.substr(it + 1, str.size()))));
+    auto it = str.find('(');
+    return std::move(std::make_unique<Const::Irrational>(parse(str.substr(it + 1, str.size() - 1))));
 }
 
 std::unique_ptr<IVar> Var::Parser::parse(const std::string& str) {

@@ -59,5 +59,6 @@ std::vector<double> Equation::Irrational::findX() const {
         vars_sum += token->getFactor();
     }
 
+
     return {(consts_sum * consts_sum) / vars_sum};
 }
